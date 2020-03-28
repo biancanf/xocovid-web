@@ -1,0 +1,43 @@
+version: '3'
+services:
+  # mongo:
+  #   image: bitnami/mongodb
+  #   restart: always
+  #   networks:
+  #     - base
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+  #     MONGODB_DATABASE: calendar
+  #     MONGODB_USERNAME: bianca
+  #     MONGODB_PASSWORD: bianca
+
+  api:
+    image: node:10
+    command:  "npm start"
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    ports:
+      - "3333:3333"
+    networks:
+      - base
+
+  # web:
+  #   image: node:10
+  #   command:  "npm run dev"
+  #   working_dir: /app
+  #   volumes:
+  #     - ./web:/app
+      
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - base
+
+
+networks:
+  base:
+
+volumes:
+  db_data:
